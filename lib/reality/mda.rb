@@ -13,6 +13,9 @@
 #
 
 require 'reality/logging'
+require 'reality/facets'
+require 'reality/generators'
+require 'reality/model'
 require 'reality/naming'
 require 'reality/options'
 require 'reality/orderedhash'

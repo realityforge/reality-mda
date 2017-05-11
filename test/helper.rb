@@ -1,5 +1,6 @@
 $:.unshift File.expand_path('../../lib', __FILE__)
 
+require 'securerandom'
 require 'minitest/autorun'
 require 'test/unit/assertions'
 require 'reality/mda'

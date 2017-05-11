@@ -61,14 +61,21 @@ module Reality #nodoc
           yield r
         end
 
+        Reality::Facets.copy_targets_to_generator_target_manager(template_set_container, facet_container)
+
         root_elements = repository.model_elements.select { |e| e.container_key.nil? }
         if 1 != root_elements.size
           Reality::Mda.error("The Reality::Mda library only supports models with a single root element. Actual root elements include: #{root_elements.collect { |e| e.key }.inspect}")
         end
 
-        Reality::Facets.copy_targets_to_generator_target_manager(template_set_container, facet_container)
-
         root_element = root_elements[0]
+        define_build_container(module_type, root_element, template_set_container, options)
+      end
+
+      private
+
+      def define_build_container(module_type, root_element, template_set_container, options = {})
+
         default_descriptor_name = options[:default_descriptor_name] || "#{root_element.key}.rb"
         build_container_key = options[:build_container_key] || :Build
         buildr_prefix = options[:buildr_prefix] || root_element.key

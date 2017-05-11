@@ -78,7 +78,7 @@ module Reality #nodoc
 
         default_descriptor_name = options[:default_descriptor_name] || "#{root_element.key}.rb"
         build_container_key = options[:build_container_key] || :Build
-        buildr_prefix = options[:buildr_prefix] || Reality::Naming.underscore(module_type.gsub(/^(.*::)([^:]+)$/,'\2'))
+        buildr_prefix = options[:buildr_prefix] || Reality::Naming.underscore(module_type.name.gsub(/^(.*::)([^:]+)$/,'\2'))
         module_type.class_eval <<-RUBY
 class #{build_container_key}
   class << self

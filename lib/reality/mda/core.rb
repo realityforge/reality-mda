@@ -70,6 +70,7 @@ module Reality #nodoc
 
         root_element = root_elements[0]
         define_build_container(module_type, root_element, template_set_container, options)
+        module_type
       end
 
       private

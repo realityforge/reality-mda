@@ -133,7 +133,7 @@ class #{build_container_key}
     protected
 
     def default_namespace_key
-      :#{root_element.key}
+      :#{buildr_prefix}
     end
 
     def log_container

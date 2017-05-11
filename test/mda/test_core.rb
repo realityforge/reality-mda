@@ -66,5 +66,9 @@ class Reality::Mda::TestCore < Reality::Mda::TestCase
     generated_file = "#{target_dir}/main/java/fa/helpers/FaHelper.java"
     assert_true File.exist?(generated_file)
     assert_equal "fa.helpers.FaHelper\n",IO.read(generated_file)
+
+    assert_true TestModule.const_defined?(:Build), 'TestModule::Build defined'
+    assert_true TestModule::Build.const_defined?(:GenerateTask), 'TestModule::Build::GenerateTask defined'
+    assert_true TestModule::Build.const_defined?(:LoadDescriptor), 'TestModule::Build::LoadDescriptor defined'
   end
 end

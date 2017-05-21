@@ -70,5 +70,7 @@ class Reality::Mda::TestCore < Reality::Mda::TestCase
     assert_true TestModule.const_defined?(:Build), 'TestModule::Build defined'
     assert_true TestModule::Build.const_defined?(:GenerateTask), 'TestModule::Build::GenerateTask defined'
     assert_true TestModule::Build.const_defined?(:LoadDescriptor), 'TestModule::Build::LoadDescriptor defined'
+
+    assert_true TestModule.const_defined?(:Runner), 'TestModule::Runner defined'
   end
 end

@@ -69,18 +69,51 @@ module Reality #nodoc
         end
 
         root_element = root_elements[0]
-        define_build_container(module_type, root_element, template_set_container, options)
-        module_type
-      end
-
-      private
-
-      def define_build_container(module_type, root_element, template_set_container, options = {})
 
         system_name = options[:system_name] || Reality::Naming.underscore(module_type.name.gsub(/^(.*::)([^:]+)$/, '\2'))
         default_descriptor_name = options[:default_descriptor_name] || "#{system_name}.rb"
         build_container_key = options[:build_container_key] || :Build
         buildr_prefix = options[:buildr_prefix] || system_name
+
+        define_build_container(module_type, root_element, template_set_container, default_descriptor_name, buildr_prefix, build_container_key)
+        define_runner(module_type, root_element, template_set_container, default_descriptor_name)
+
+        module_type
+      end
+
+      private
+
+      def define_runner(module_type, root_element, template_set_container, default_descriptor_name)
+        module_type.class_eval <<-RUBY
+  class Runner < Reality::Generators::BaseRunner
+    def default_descriptor
+      '#{default_descriptor_name}'
+    end
+
+    def element_type_name
+      '#{root_element.key}'
+    end
+
+    def log_container
+      #{module_type.name}
+    end
+
+    def instance_container
+      #{module_type.name}
+    end
+
+    def template_set_container
+      #{template_set_container.name}
+    end
+
+    def additional_loggers
+      [Reality::Facets::Logger]
+    end
+  end
+RUBY
+      end
+
+      def define_build_container(module_type, root_element, template_set_container, default_descriptor_name, buildr_prefix, build_container_key)
         module_type.class_eval <<-RUBY
 class #{build_container_key}
   class << self

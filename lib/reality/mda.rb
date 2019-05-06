@@ -18,6 +18,5 @@ require 'reality/generators'
 require 'reality/model'
 require 'reality/naming'
 require 'reality/options'
-require 'reality/orderedhash'
 
 require 'reality/mda/core'

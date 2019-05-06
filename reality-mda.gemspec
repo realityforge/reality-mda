@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'reality-generators', '>= 1.12.0'
   s.add_dependency 'reality-naming', '>= 1.9.0'
   s.add_dependency 'reality-model', '>= 1.3.0'
-  s.add_dependency 'reality-orderedhash', '>= 1.0.0'
 
   s.add_development_dependency(%q<minitest>, ['= 5.9.1'])
   s.add_development_dependency(%q<test-unit>, ['= 3.1.5'])

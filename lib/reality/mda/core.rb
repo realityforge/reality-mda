@@ -137,8 +137,8 @@ class #{build_container_key}
   end
 
   class GenerateTask < Reality::Generators::Rake::BaseGenerateTask
-    def initialize(root_element_key, key, generator_keys, target_dir, buildr_project = nil)
-      super(root_element_key, key, generator_keys, target_dir, buildr_project)
+    def initialize(root_element_key, key, generator_keys, target_dir, buildr_project = nil, clean_generated_files = true)
+      super(root_element_key, key, generator_keys, target_dir, buildr_project, clean_generated_files)
     end
 
     protected
